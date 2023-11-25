@@ -1,6 +1,6 @@
 #include "HalfSelectionSort.hpp"
 
-int halfSelectionSort (std::vector<int>& nums, int& duration)
+int HalfSelectionSort::halfSelectionSort(std::vector<int>& nums, int& duration)
 {
     bool isEven;
     if(nums.size() % 2 == 0)
@@ -23,9 +23,7 @@ int halfSelectionSort (std::vector<int>& nums, int& duration)
     
     if(isEven)
     {
-        if(nums[(nums.size() / 2) - 1] < nums[nums.size() / 2])
-            return nums[(nums.size() / 2) - 1];
-        return nums[nums.size() / 2];
+        return nums[(nums.size() / 2) - 1];
     }
     return nums[nums.size() / 2];
 }
