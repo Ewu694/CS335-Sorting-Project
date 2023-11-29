@@ -4,11 +4,14 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
 
 class HalfHeapSort
 {
     int halfHeapSort(std::vector<int>& nums, int& duration)
     {
+        auto start = std::chrono::steady_clock::now();
+
         std::vector<int>::size_type newSize = nums.size() / 2;
         std::swap(nums[0], nums[nums.size() - 1]); // Move the first element to the end
         nums.resize(newSize); // Reduce the size to half
@@ -22,9 +25,14 @@ class HalfHeapSort
         percDown(nums, 0); // Adjust the heap
     }
         duration = newSize / 2; // Update the duration
+
+        auto end = std::chrono::steady_clock::now();
+        auto diff = end - start;
+
+        duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
         return nums[0]; // Return the median at the root
     }
-    void percDown(std::vector<int>& heap, std::vector<int>::size_type hole);
+    void percDown(std::vector<int>& heap, std::vector<int>::size_type hole)
     {
         std::vector<int>::size_type child;
         int tmp = std::move(heap[hole]); // Store the value at hole

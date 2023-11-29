@@ -17,6 +17,12 @@ class MedianOfMediansMethod
         }
         int medianOfMedians(std::vector<int>& nums, std::vector<int>::iterator low, std::vector<int>::iterator high)
         {
+            auto start = std::chrono::steady_clock::now();
+
+            bool isEven;
+            if(nums.size() % 2 == 0)
+                isEven = true;
+
             int numElements = std::distance(low, high);
 
             if (numElements <= 5) 
@@ -35,7 +41,14 @@ class MedianOfMediansMethod
                 medians[i] = quickSelect(nums, groupStart, groupEnd, (groupEnd - groupStart) / 2);
             }
 
-            return quickSelect(medians, medians.begin(), medians.end(), medians.size() / 2);
+            int result = quickSelect(medians, medians.begin(), medians.end(), medians.size() / 2);
+
+            auto end = std::chrono::steady_clock::now();
+            auto diff = end - start;
+
+            duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
+
+            return result;
         }
         int medianOfFive(int a, int b, int c, int d, int e)
         {

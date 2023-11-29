@@ -4,12 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
 
 class QuickSelect
 {
     public:
         int quickSelect(std::vector<int>& nums, int& duration)
         {
+            auto start = std::chrono::steady_clock::now();
+
             int left = 0;
             int right = nums.size() - 1;
 
@@ -20,15 +23,22 @@ class QuickSelect
                 auto pivotIter = hoarePartition(nums, nums.begin() + left, nums.begin() + right);
 
                 if (std::distance(nums.begin(), pivotIter) > (left + right) / 2)
-                right = std::distance(nums.begin(), pivotIter) - 1;
-            else
-                left = std::distance(nums.begin(), pivotIter) + 1;
+                    right = std::distance(nums.begin(), pivotIter) - 1;
+                else
+                    left = std::distance(nums.begin(), pivotIter) + 1;
             }
 
             insertionSort(nums, left, right); // Sort the remaining elements using insertion sort
+            int median = nums[left + (right - left) / 2];
 
             duration = right - left + 1;
-            return nums[left + (right - left) / 2]; // Return the median
+
+            auto end = std::chrono::steady_clock::now();
+            auto diff = end - start;
+
+            duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
+            
+            return median;
         }
         std::vector<int>::iterator hoarePartition( std::vector<int>& nums, std::vector<int>::iterator low, std::vector<int>::iterator high)
         {

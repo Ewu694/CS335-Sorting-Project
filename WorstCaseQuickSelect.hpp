@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 class WorstCaseQuickSelect
 {
@@ -12,6 +13,8 @@ class WorstCaseQuickSelect
         std::vector<int>& worstCaseQuickSelect(void)
         // worstCaseQuickSelect generates a worst-case input for a quickselect that uses median-of-3 partitioning. The input it generates must be of length 20,000, and contain each number from 1-20000 once.
         {
+            auto start = std::chrono::steady_clock::now();
+
             static std::vector<int> worstCaseInput(20000);
     
             // Generating the worst-case input
@@ -23,7 +26,12 @@ class WorstCaseQuickSelect
             std::random_device rd;
             std::mt19937 g(rd());
             std::shuffle(worstCaseInput.begin(), worstCaseInput.end(), g);
-    
+
+            auto end = std::chrono::steady_clock::now();
+            auto diff = end - start;
+
+            duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
+            
             return worstCaseInput;
         }
 };

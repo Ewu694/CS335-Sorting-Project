@@ -3,16 +3,24 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
 
 class InPlaceMergeSort
 {
     int inPlaceMergeSort(std::vector<int>& nums, int& duration)
     {
+        auto start = std::chrono::steady_clock::now();
+
         bool isEven;
         if(nums.size() % 2 == 0)
             isEven = true;
 
         inPlaceMergeSortHelper(nums, 0, nums.size() - 1);
+
+        auto end = std::chrono::steady_clock::now();
+        auto diff = end - start;
+
+        duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
 
         if(isEven)
             return nums[(nums.size() / 2) - 1];
