@@ -1,13 +1,9 @@
-#ifndef HALFHEAPSORT_HPP
-#define HALFHEAPSORT_HPP
 
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <chrono>
 
-class HalfHeapSort
-{
     int halfHeapSort(std::vector<int>& nums, int& duration)
     {
         auto start = std::chrono::steady_clock::now();
@@ -60,5 +56,3 @@ class HalfHeapSort
             percDown(heap, i);
         }
     }
-};  
-#endif
