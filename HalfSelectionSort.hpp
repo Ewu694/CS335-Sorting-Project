@@ -1,44 +1,35 @@
-#ifndef HALFSELECTIONSORT_HPP
-#define HALFSELECTIONSORT_HPP
-
 #include <iostream>
 #include <vector>
 #include <chrono>
 
-class HalfSelectionSort
+int halfSelectionSort ( std::vector<int>& nums, int& duration)
 {
-    public:
-        int halfSelectionSort(std::vector<int>& nums, int& duration)
-        {
-            auto start = std::chrono::steady_clock::now();
-
-            bool isEven;
-            if(nums.size() % 2 == 0)
-                isEven = true;
-
-            if(nums.size() >= 50000)
-                std::cout << "Input is too big for Selection Sort";
-
-            int minIndex = 0;
-            for(int i = 0; i < nums.size() / 2; ++i)
-            {
-                minIndex = i;
-                for(int j = i + 1; j < nums.size(); j++)
-                {   
-                    if(nums[j] < nums[minIndex])
-                    minIndex = j;
-                    std::swap(nums[j], nums[minIndex]);
-                }
-            }   
-            auto end = std::chrono::steady_clock::now();
-            auto diff = end - start;
-
-            duration = std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
+    auto t1 = std::chrono::high_resolution_clock::now();
     
-            if(isEven)
-                return nums[(nums.size() / 2) - 1];
-            return nums[nums.size() / 2];
-        }
-};
-#endif
+    if (nums.size() > 50000)
+    {
+        std::cout << "Input is too big for selection sort" << std::endl;
+        return -1;
+    }
 
+    int middle = (nums.size() - 1) / 2;
+    for (int i = 0; i <= middle; ++i)
+    {
+        int min_index = i;
+        for (int j = i + 1; j < nums.size(); ++j)
+        {
+            if (nums[j] < nums[min_index]){
+                min_index = j;
+            }
+        }
+        std::swap(nums[i], nums[min_index]);
+    }
+
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+    duration = dur.count();
+    
+    return nums[(nums.size() - 1) / 2];
+}
+
+#endif
