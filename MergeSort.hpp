@@ -18,7 +18,7 @@ void mergeSortHelper(std::vector<int>&nums){
 int mergeSort ( std::vector<int>& nums, int& duration){
     auto t1 = std::chrono::high_resolution_clock::now();
     
-    int half = nums.size()/2;
+    int middle = nums.size()/2;
     mergeSortHelper(nums);
     
     auto t2 = std::chrono::high_resolution_clock::now(); // Update the stop time
