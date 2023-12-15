@@ -3,7 +3,8 @@
 #include <chrono>
 #include <algorithm>
 
-int standardSort ( std::vector<int>& nums, int& duration){
+int standardSort ( std::vector<int>& nums, int& duration)
+{
     auto t1 = std::chrono::high_resolution_clock::now();
 
     int middle = (nums.size()-1)/2;
