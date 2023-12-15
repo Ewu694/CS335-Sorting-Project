@@ -42,7 +42,8 @@ std::vector<int>::iterator hoarePartition(std::vector<int>& nums, std::vector<in
 }
 
 // Helper function for quickSelect
-int quickSelectHelper(std::vector<int>& nums, std::vector<int>::iterator low, std::vector<int>::iterator high, int k) {
+int quickSelectHelper(std::vector<int>& nums, std::vector<int>::iterator low, std::vector<int>::iterator high, int k) 
+{
     if (high - low < 10) {
         std::sort(low, high + 1);  // Sorts to get correct range
         return *(low + k);
@@ -59,7 +60,8 @@ int quickSelectHelper(std::vector<int>& nums, std::vector<int>::iterator low, st
     }
 }
 
-int quickSelect(std::vector<int>& nums, int& duration) {
+int quickSelect(std::vector<int>& nums, int& duration) 
+{
     auto t1 = std::chrono::high_resolution_clock::now();
     
     int median = (nums.size()-1)/2;
