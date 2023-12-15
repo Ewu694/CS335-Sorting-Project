@@ -3,7 +3,8 @@
 #include <chrono>
 #include <algorithm>
 
-void mergeSortHelper(std::vector<int>&nums){
+void mergeSortHelper(std::vector<int>&nums)
+{
     if (nums.size() <= 1)
         return;
     
@@ -15,7 +16,8 @@ void mergeSortHelper(std::vector<int>&nums){
     std::merge(left.begin(), left.end(), right.begin(), right.end(), nums.begin());
 }
 
-int mergeSort ( std::vector<int>& nums, int& duration){
+int mergeSort ( std::vector<int>& nums, int& duration)
+{
     auto t1 = std::chrono::high_resolution_clock::now();
     
     int middle = nums.size()/2;
