@@ -1,10 +1,46 @@
-#include <vector>
-#include <algorithm>
-#include <iostream>
-#include <chrono>
+#ifndef ASSIGNMENT_2_HALFHEAPSORT_HPP
+#define ASSIGNMENT_2_HALFHEAPSORT_HPP
 
-int leftChild(int i) 
-   return 2 * i; 
+#include <vector>
+#include <chrono>
+#include <iostream>
+
+int leftChild(int i) { return 2 * i; }
+
+// parameter "hole" is the index of the hole.
+// percDown precondition: value to be inserted into hole is stored in heap at index 0. The hole itself may be in an unspecified state - i.e. it doesn't matter what's in it since you'll be overwriting it anyway.
+// percDown postcondition: hole has been moved into correct place and value has been inserted into hole.
+//void percDown ( std::vector<int>& heap, std::vector<int>::size_type hole ) {
+//    int child;   // used for the index of the child of the hole to switch with
+//    int tmp;     // used for the value at the hole
+//
+//    // perc down pseudocode:
+//    /*
+//     * while hole is not a leaf
+//     *      check if it's in the right place (for min heap, so less than both children)
+//     *      if so, continue
+//     *      if not, swap it with its child
+//     */
+//    for (tmp = heap[hole]; leftChild(hole) < heap.size(); hole = child) {
+//        child = leftChild(hole);
+//        // find smaller child
+//        if (child != heap.size() - 1 && heap[child] > heap[child + 1]) {
+//            child++;
+//        }
+//
+//        // move hole down
+//        if (tmp > heap[child]) {
+//            heap[hole] = heap[child];
+//        }
+//        // stop perc down
+//        else {
+//            break;
+//        }
+//    }
+//
+//    // maintain complete tree structure
+//    heap[hole] = tmp;
+//}
 
 void percDown( std::vector<int>& a, int i ) {
     int child;
@@ -55,3 +91,5 @@ int halfHeapSort ( std::vector<int>& nums, int& duration ) {
 
     return nums[1];
 }
+
+#endif
