@@ -1,35 +1,39 @@
-#include <iostream>
 #include <vector>
+#include <iostream>
 #include <chrono>
 
-int halfSelectionSort ( std::vector<int>& nums, int& duration)
+int halfSelectionSort(std::vector<int>& nums, int& duration) 
 {
-    auto t1 = std::chrono::high_resolution_clock::now();
-    
-    if (nums.size() > 50000)
+    auto start = std::chrono::steady_clock::now();
+
+    std::size_t size = nums.size();
+    if (size > 50000) // If input is too large:
     {
-        std::cout << "Input is too big for selection sort" << std::endl;
+        std::cout << "Input was too large for selection sort. Size: " << size << std::endl; 
         return -1;
     }
 
-    int middle = (nums.size() - 1) / 2;
-    for (int i = 0; i <= middle; ++i)
+    for (size_t i = 0; i < size / 2 + 1; i++) 
     {
-        int min_index = i;
-        for (int j = i + 1; j < nums.size(); ++j)
+        size_t minIndex = i;
+        size_t index = i;
+        for (auto iterator = nums.begin() + i; iterator != nums.end(); ++iterator) 
         {
-            if (nums[j] < nums[min_index]){
-                min_index = j;
-            }
+            int num = *iteratorerator;
+            int min = nums[minIndex];
+            if (num < min) 
+                minIndex = index;
+            index++;
         }
-        std::swap(nums[i], nums[min_index]);
+        std::swap(nums[i], nums[minIndex]); //swap iterator's element with minimum
     }
+    auto end = std::chrono::steady_clock::now();
+    auto diff = end - start;
 
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
-    duration = dur.count();
-    
-    return nums[(nums.size() - 1) / 2];
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(diff).count();
+
+    if (size % 2 == 0) 
+        return nums[size / 2 - 1];
+    else
+        return nums[nums.size() / 2];
 }
-
-#endif
