@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  Project 2
-//
-//  Created by Riyuan Liu on 11/29/23.
-//
-
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -86,40 +79,40 @@ int main() {
     std::string filename = "input1.txt"; // Change this to your file's name
     std::vector<int> integers = readIntegersFromFile(filename);
     int timer=0;
-    // int medianofhalfselectionsort = halfSelectionSort(integers, timer);
-    // writeIntegersToFile(integers, "selectionsort.txt");
-    // //std::cout<<isSorted(integers)<<std::endl;
-    // std::cout<<areFilesEqual("selectionsort.txt", "selectionsort1.txt")<<std::endl;
+    int medianofhalfselectionsort = halfSelectionSort(integers, timer);
+    writeIntegersToFile(integers, "selectionsort.txt");
+    std::cout<<isSorted(integers)<<std::endl;
+    std::cout<<areFilesEqual("selectionsort.txt", "selectionsort1.txt")<<std::endl;
 
 
-    // int medianstandardsort = standardSort(integers, timer);
-    // writeIntegersToFile(integers, "standardsort.txt");
-    // std::cout<<isSorted(integers)<<std::endl;
+    int medianstandardsort = standardSort(integers, timer);
+    writeIntegersToFile(integers, "standardsort.txt");
+    std::cout<<isSorted(integers)<<std::endl;
 
-//    int mediansmergesort = mergeSort(integers, timer);
-//    writeIntegersToFile(integers, "mergesort.txt");
-//    std::cout<<isSorted(integers)<<std::endl;
+    int mediansmergesort = mergeSort(integers, timer);
+    writeIntegersToFile(integers, "mergesort.txt");
+    std::cout<<isSorted(integers)<<std::endl;
 
-//    int medianinplacemrgesort = inPlaceMergeSort(integers, timer);
-//    writeIntegersToFile(integers, "inplacemergesort.txt");
-//    std::cout<<isSorted(integers)<<std::endl;
+    int medianinplacemrgesort = inPlaceMergeSort(integers, timer);
+    writeIntegersToFile(integers, "inplacemergesort.txt");
+    std::cout<<isSorted(integers)<<std::endl;
 
-        //HEAP SORT TEST CASE
-    // int arr[] = {22, 9, 8, 71, 6, 500, 4, 3, 29, 1};
-    // std::vector<int> test(arr, arr + sizeof(arr) / sizeof(arr[0]));
-    //buildHeap(test);
+    //HEAP SORT TEST CASE
+     int arr[] = {22, 9, 8, 71, 6, 500, 4, 3, 29, 1};
+     std::vector<int> test(arr, arr + sizeof(arr) / sizeof(arr[0]));
+    buildHeap(test);
     int medianhalfheapsort = halfHeapSort(integers, timer);
     writeIntegersToFile(integers, "heapsort.txt");
-    //std::cout<<isSorted(test)<<std::endl;
+    std::cout<<isSorted(test)<<std::endl;
     std::cout<<areFilesEqual("heapsort.txt", "heapsort1.txt")<<std::endl;
 
 
-//    int medianhalfheapsort = halfHeapSort(integers, timer);
-//    std::vector<int> nums{10,9,8,7,6,5,4,3,2,1};
-    // std::vector<int> nums{1,2,3,4,5,6,7,8,9,10};
-    // int medianhalfheapsort = halfHeapSort(nums,timer);
-    // writeIntegersToFile(nums, "heapsort.txt");
-    // std::cout<<areFilesEqual("heapsort1.txt", "heapsort.txt")<<std::endl;
+    int medianhalfheapsort = halfHeapSort(integers, timer);
+    std::vector<int> nums{10,9,8,7,6,5,4,3,2,1};
+    std::vector<int> nums{1,2,3,4,5,6,7,8,9,10};
+    int medianhalfheapsort = halfHeapSort(nums,timer);
+    writeIntegersToFile(nums, "heapsort.txt");
+    std::cout<<areFilesEqual("heapsort1.txt", "heapsort.txt")<<std::endl;
 
 
     return 0;
